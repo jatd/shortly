@@ -1,11 +1,9 @@
 <template>
   <Card title="Create a New Box" class="card">
-    <div>
-      <form name="create-box" onSubmit>
-        <Input name="title" model="box.name" placeholder="box" required />
-      </form>
-      <button @click="createBox">Create Box</button>
-    </div>
+    <form name="create-box" onSubmit>
+      <Input :name="title" v-model="box.name" :required="true" />
+    </form>
+    <button @click="createBox">Create Box</button>
   </Card>
 </template>
 

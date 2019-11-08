@@ -86,11 +86,17 @@ button {
   height: 60px;
   font-size: 26px;
   cursor: pointer;
-  color: #a28298;
+  color: #43443d;
   word-break: break-all;
   white-space: pre-wrap;
   font-family: Ubuntu;
-  border-radius: 8px;
+  border-radius: 16px;
+  outline: none !important;
+  border: 5px solid #ffffed;
+
+  &:hover {
+    color: $primary-color;
+  }
 }
 
 .fade-enter-active,

@@ -100,6 +100,7 @@ export default {
     width: 100%;
   }
 }
+
 section {
   @extend .container;
 }

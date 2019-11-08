@@ -1,16 +1,42 @@
 <template>
-  <div>
-    <input name="name" placeholder="Test" v-model="model" required="required" />
+  <div class="input-container">
+    <input :name="name" :placeholder="placeholder" :required="required" @input="handleInput" />
   </div>
 </template>
 
 <script>
 export default {
-  props: ["name", "placeholder", "model", "required"]
+  props: {
+    name: {
+      type: String
+    },
+    placeholder: {
+      type: String,
+      default: ""
+    },
+    value: {
+      type: String,
+      default: ""
+    },
+    required: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  methods: {
+    handleInput(e) {
+      this.$emit("input", e.target.value);
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
+.input-container {
+  height: 50px;
+}
+
 input {
   border-radius: 5px;
   outline-color: #a28298;
@@ -20,7 +46,6 @@ input {
   padding-left: 10px;
   font-family: Ubuntu;
   border: 5px solid #999;
-  margin-bottom: 20px;
   font-size: 16px;
 
   &:required {
