@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Card>
+    <Card class="card">
       <section v-if="errored">
         <p>We're sorry, we're not able to retrieve this information at the moment, please try back later</p>
       </section>
@@ -11,7 +11,9 @@
         </section>
       </section>
     </Card>
-    <input name="todo" v-model="todo" placeholder />
+    <div class="input-wrapper">
+      <input name="todo" v-model="todo" placeholder />
+    </div>
 
     <button @click="createEvent">Create Event</button>
   </div>
@@ -44,13 +46,15 @@ export default {
 
   methods: {
     async createEvent({ title, date }) {
-      const { data } = await entitiesService.create("items", {
-        title: this.todo,
-        description: "test descript",
-        date: null,
-        boxId: this.box.id
-      });
-      this.items = this.items.concat([data]);
+      if (this.todo) {
+        const { data } = await entitiesService.create("items", {
+          title: this.todo,
+          description: "test descript",
+          date: null,
+          boxId: this.box.id
+        });
+        this.items = this.items.concat([data]);
+      }
     }
   },
 
@@ -82,6 +86,19 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+}
+
+.card {
+  min-height: 350px;
+}
+
+.input-wrapper {
+  margin-top: 20px;
+  width: 100%;
+
+  input {
+    width: 100%;
+  }
 }
 
 section {

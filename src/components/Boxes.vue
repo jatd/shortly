@@ -10,8 +10,8 @@
           <CreateBox @addBox="addBox" />
         </Modal>
         <section class="box" v-for="box in sortBoxes" :key="box.id">
-          <a href="#" @click="viewBox(box.id)">
-            <Card :hover="true">
+          <a @click="viewBox(box.id)">
+            <Card class="card" :hover="true">
               <p>{{box.name}}</p>
             </Card>
           </a>
@@ -116,6 +116,7 @@ p {
   flex-grow: 1;
   .card.cardActive {
     margin: 5px;
+    min-width: 250px;
   }
 }
 </style>

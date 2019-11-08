@@ -1,7 +1,6 @@
 <template>
   <div class="wrapper">
     <div class="form-container">
-      <div class="create-event-modal">Add an item</div>
         <li v-for="(item) in items" :key="item.id">
           {{item.title}}
         </li>

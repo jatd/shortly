@@ -33,7 +33,7 @@ export default {
 @import "../styles/globals";
 
 .header {
-  font-size: 18px;
+  font-size: 28px;
   padding: 10px 20px 0px 20px;
   display: flex;
   flex-direction: row;
