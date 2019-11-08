@@ -2,7 +2,7 @@
   <Card title="Create a New Box" class="card">
     <div>
       <form name="create-box" onSubmit>
-        <input name="title" v-model="box.name" placeholder="box" required />
+        <Input name="title" model="box.name" placeholder="box" required />
       </form>
       <button @click="createBox">Create Box</button>
     </div>
@@ -12,6 +12,7 @@
 <script>
 import entitiesService from "@/services/entities";
 import Card from "@/components/atomic/Card";
+import Input from "./atomic/Input";
 
 export default {
   data() {
@@ -41,7 +42,8 @@ export default {
   },
 
   components: {
-    Card
+    Card,
+    Input
   }
 };
 </script>

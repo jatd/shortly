@@ -91,10 +91,6 @@ button {
   white-space: pre-wrap;
   font-family: Ubuntu;
   border-radius: 8px;
-
-  &:hover {
-    transition: ease-in-out all 0.2s;
-  }
 }
 
 .fade-enter-active,
