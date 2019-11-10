@@ -2,8 +2,8 @@
   <div class="container">
     <Card title="Register Today!">
       <form name="shortly-form-register">
-        <input type="email" name="email" placeholder="email" v-model="email" required />
-        <input type="password" name="password" placeholder="password" v-model="password" required />
+        <Input type="email" name="email" placeholder="email" v-model="email" required />
+        <Input type="password" name="password" placeholder="password" v-model="password" required />
       </form>
       <div :class="{ error: error }" v-html="error" />
       <button @click="register">Register</button>
@@ -13,6 +13,7 @@
 
 <script>
 import Card from "@/components/atomic/Card";
+import Input from "@/components/atomic/Input";
 
 export default {
   data() {
@@ -24,16 +25,19 @@ export default {
   },
 
   components: {
-    Card
+    Card,
+    Input
   },
 
   methods: {
     async register() {
       try {
-        await this.$store.dispatch("auth/register", {
-          email: this.email,
-          password: this.password
-        });
+        this.email &&
+          this.password &&
+          (await this.$store.dispatch("auth/register", {
+            email: this.email,
+            password: this.password
+          }));
       } catch (error) {
         this.error = error.response.data.error;
       }
@@ -56,6 +60,10 @@ export default {
   margin: 1rem;
   border: 1px dashed;
   padding: 5px;
+}
+
+.input-container:first-child {
+  margin-bottom: 10px;
 }
 
 form {

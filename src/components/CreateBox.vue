@@ -1,5 +1,5 @@
 <template>
-  <Card title="Create a New Box" class="card">
+  <Card title="Create a TODO" class="card">
     <form name="create-box" onSubmit>
       <Input :name="title" v-model="box.name" :required="true" />
     </form>

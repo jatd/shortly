@@ -114,6 +114,7 @@ p {
 
 .box {
   flex-grow: 1;
+  font-size: 18px;
   .card.cardActive {
     margin: 5px;
     min-width: 250px;
