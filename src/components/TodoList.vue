@@ -57,5 +57,6 @@ export default {
 
 li {
   padding: 5px;
+  word-wrap: break-word;
 }
 </style>

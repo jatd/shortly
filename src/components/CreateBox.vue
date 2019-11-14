@@ -1,16 +1,17 @@
 <template>
-  <Card title="Create a TODO" class="card">
+  <Card title="Create a TODO List" class="card">
     <form name="create-box" onSubmit>
       <Input :name="title" v-model="box.name" :required="true" />
     </form>
-    <button @click="createBox">Create Box</button>
+    <Button @click="createBox">Create List</Button>
   </Card>
 </template>
 
 <script>
 import entitiesService from "@/services/entities";
 import Card from "@/components/atomic/Card";
-import Input from "./atomic/Input";
+import Input from "@/components/atomic/Input";
+import Button from "@/components/atomic/Button";
 
 export default {
   data() {
@@ -41,7 +42,8 @@ export default {
 
   components: {
     Card,
-    Input
+    Input,
+    Button
   }
 };
 </script>

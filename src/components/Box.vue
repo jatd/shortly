@@ -19,7 +19,7 @@
       :autofocus="true"
     />
 
-    <button @click="createEvent">Create Event</button>
+    <Button @click="createEvent">Create Event</Button>
   </div>
 </template>asdf
 
@@ -29,6 +29,7 @@ import Loader from "./atomic/Loader";
 import Card from "./atomic/Card";
 import Input from "./atomic/Input";
 import TodoList from "./TodoList";
+import Button from "./atomic/Button";
 
 export default {
   data() {
@@ -68,7 +69,8 @@ export default {
     Card,
     Loader,
     TodoList,
-    Input
+    Input,
+    Button
   },
 
   async mounted() {
