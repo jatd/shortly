@@ -2,9 +2,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const VueLoaderPlugin = require("vue-loader/lib/plugin");
 const webpack = require("webpack");
 const path = require("path");
-const sass = require("sass");
-const fibers = require("fibers");
-const VuetifyLoaderPlugin = require("vuetify-loader/lib/plugin");
 
 function resolve(dir) {
   return path.join(__dirname, "..", dir);

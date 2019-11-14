@@ -7,23 +7,29 @@
       <section v-else :style="styleLoader">
         <Loader v-if="loading" />
         <section v-else>
-          <TodoList @createEvent="createEvent" :items="items" />
+          <TodoList @createEvent="createEvent" :items="items" :boxName="box.name" />
         </section>
       </section>
     </Card>
-    <div class="input-wrapper">
-      <input name="todo" v-model="todo" placeholder />
-    </div>
+    <Input
+      ref="todo"
+      name="todo"
+      v-model="todo"
+      placeholder="Enter Todo Here..."
+      :autofocus="true"
+    />
 
-    <button @click="createEvent">Create Event</button>
+    <Button @click="createEvent">Create Event</Button>
   </div>
-</template>
+</template>asdf
 
 <script>
 import entitiesService from "@/services/entities";
 import Loader from "./atomic/Loader";
 import Card from "./atomic/Card";
+import Input from "./atomic/Input";
 import TodoList from "./TodoList";
+import Button from "./atomic/Button";
 
 export default {
   data() {
@@ -32,7 +38,7 @@ export default {
       items: [],
       loading: true,
       errored: false,
-      todo: null
+      todo: ""
     };
   },
 
@@ -54,6 +60,7 @@ export default {
           boxId: this.box.id
         });
         this.items = this.items.concat([data]);
+        this.todo = "";
       }
     }
   },
@@ -61,7 +68,9 @@ export default {
   components: {
     Card,
     Loader,
-    TodoList
+    TodoList,
+    Input,
+    Button
   },
 
   async mounted() {
@@ -71,6 +80,7 @@ export default {
       this.box = data;
       this.items = data.items;
       this.loading = false;
+      this.$refs.todo.$el.focus();
     } catch (error) {
       this.errored = true;
     }
@@ -86,23 +96,22 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 }
 
-.card {
-  min-height: 350px;
-}
-
-.input-wrapper {
-  margin-top: 20px;
+.input-container {
+  margin-top: 10px;
+  margin-bottom: 10px;
   width: 100%;
-
-  input {
-    width: 100%;
-  }
+  position: sticky;
 }
 
 section {
-  @extend .container;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
 }
 </style>
 

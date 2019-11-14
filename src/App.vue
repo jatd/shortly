@@ -24,20 +24,21 @@ export default {
 @import "./styles/globals";
 body,
 html {
-  height: 100%;
   margin: 0px auto;
-  padding: 0px auto;
+  background-color: $color-dark;
 }
 
 a {
   text-decoration: none;
 }
 
-#app {
+body {
   font-family: "Ubuntu", Helvetica, Arial, sans-serif;
+}
+
+#app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
 }
 
 #main {
@@ -49,54 +50,9 @@ a {
   box-sizing: border-box;
   padding: 15px 20px;
   margin: 0 auto;
-  height: 100%;
   justify-content: flex-start;
-  overflow-x: auto;
-  max-width: 600px;
-  background-color: #43443d;
-}
-
-input {
-  border-radius: 5px;
-  outline-color: #a28298;
-  outline-width: 2px;
-  height: 50px;
-  outline: none;
-  padding-left: 10px;
-  font-family: Ubuntu;
-  border: 5px solid #999;
-  margin-bottom: 20px;
-  font-size: 16px;
-
-  &:required {
-    box-shadow: none;
-  }
-}
-
-button {
-  position: sticky;
-  text-transform: uppercase;
-  font-weight: 600;
-  outline: none;
-  background-color: #e0dada;
-  bottom: 0px;
-  margin: 0px;
-  max-width: 600px;
-  width: 100%;
-  height: 60px;
-  font-size: 26px;
-  cursor: pointer;
-  color: #43443d;
-  word-break: break-all;
-  white-space: pre-wrap;
-  font-family: Ubuntu;
-  border-radius: 16px;
-  outline: none !important;
-  border: 5px solid #ffffed;
-
-  &:hover {
-    color: $primary-color;
-  }
+  max-width: $max-width;
+  background-color: transparent;
 }
 
 .fade-enter-active,

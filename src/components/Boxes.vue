@@ -17,7 +17,7 @@
           </a>
         </section>
       </section>
-      <button class="createButton" @click="openModal" v-show="!loading">Add New Todo List</button>
+      <Button @click="openModal" v-show="!loading">Add New Todo List</Button>
     </section>
   </div>
 </template>
@@ -29,6 +29,7 @@ import Loader from "./atomic/Loader";
 import Card from "./atomic/Card";
 import CreateBox from "./CreateBox";
 import Modal from "./atomic/Modal";
+import Button from "./atomic/Button";
 
 export default {
   data() {
@@ -71,7 +72,8 @@ export default {
     Card,
     CreateBox,
     Loader,
-    Modal
+    Modal,
+    Button
   },
 
   async mounted() {
@@ -114,6 +116,7 @@ p {
 
 .box {
   flex-grow: 1;
+  font-size: 18px;
   .card.cardActive {
     margin: 5px;
     min-width: 250px;

@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <div class="title">{{boxName}}</div>
     <div class="form-container">
         <li v-for="(item) in items" :key="item.id">
           {{item.title}}
@@ -11,7 +12,7 @@
 
 <script>
 export default {
-  props: ["items"],
+  props: ["items", "boxName"],
   data() {
     return {
       todo: null,
@@ -25,10 +26,21 @@ export default {
 
 .wrapper {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
   margin-bottom: 20px;
+  width:100%;
+  height: 100%;
 }
+
+.title {
+  font-size: 28px;
+  color: $color-dark;
+  text-align: center;
+  margin-bottom: 10px;
+  font-style:italic;
+  opacity: 0.2;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -41,5 +53,10 @@ export default {
 .create-event-text {
   color: $primary-color;
   padding-bottom: 15px;
+}
+
+li {
+  padding: 5px;
+  word-wrap: break-word;
 }
 </style>

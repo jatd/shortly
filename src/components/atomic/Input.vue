@@ -1,6 +1,15 @@
 <template>
   <div class="input-container">
-    <input :name="name" :placeholder="placeholder" :required="required" @input="handleInput" />
+    <input
+      :type="type"
+      :name="name"
+      :placeholder="placeholder"
+      :value="value"
+      :required="required"
+      @input="handleInput"
+      :autofocus="autofocus"
+      :ref="refVar"
+    />
   </div>
 </template>
 
@@ -21,6 +30,17 @@ export default {
     required: {
       type: Boolean,
       default: false
+    },
+    type: {
+      type: String
+    },
+    autofocus: {
+      type: Boolean,
+      default: false
+    },
+    refVar: {
+      type: String,
+      default: ""
     }
   },
 
@@ -35,6 +55,7 @@ export default {
 <style scoped lang="scss">
 .input-container {
   height: 50px;
+  width: 100%;
 }
 
 input {
@@ -47,6 +68,7 @@ input {
   font-family: Ubuntu;
   border: 5px solid #999;
   font-size: 16px;
+  width: 100%;
 
   &:required {
     box-shadow: none;
