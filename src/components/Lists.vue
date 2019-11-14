@@ -7,12 +7,12 @@
       <Loader v-if="loading" />
       <section v-else class="wrapperSection">
         <Modal v-show="isModalOpen" @close="closeModal">
-          <CreateBox @addBox="addBox" />
+          <CreateList @addList="addList" />
         </Modal>
-        <section class="box" v-for="box in sortBoxes" :key="box.id">
-          <a @click="viewBox(box.id)">
+        <section class="list" v-for="list in sortLists" :key="list.id">
+          <a @click="viewList(list.id)">
             <Card class="card" :hover="true">
-              <p>{{box.name}}</p>
+              <p>{{list.name}}</p>
             </Card>
           </a>
         </section>
@@ -27,14 +27,14 @@ import router from "@/router";
 import entitiesService from "@/services/entities";
 import Loader from "./atomic/Loader";
 import Card from "./atomic/Card";
-import CreateBox from "./CreateBox";
+import CreateList from "./CreateList";
 import Modal from "./atomic/Modal";
 import Button from "./atomic/Button";
 
 export default {
   data() {
     return {
-      boxes: [],
+      lists: [],
       loading: false,
       errored: false,
       isModalOpen: false
@@ -42,8 +42,8 @@ export default {
   },
 
   methods: {
-    viewBox(id) {
-      router.push(`/box/${id}`);
+    viewList(id) {
+      router.push(`/list/${id}`);
     },
 
     closeModal() {
@@ -54,15 +54,15 @@ export default {
       this.isModalOpen = true;
     },
 
-    addBox(box) {
-      this.boxes = this.boxes.concat([box]);
+    addList(list) {
+      this.lists = this.lists.concat([list]);
       this.closeModal();
     }
   },
 
   computed: {
-    sortBoxes() {
-      return this.boxes
+    sortLists() {
+      return this.lists
         .slice()
         .sort((a, b) => b.name.toLowerCase() - a.name.toLowerCase());
     }
@@ -70,7 +70,7 @@ export default {
 
   components: {
     Card,
-    CreateBox,
+    CreateList,
     Loader,
     Modal,
     Button
@@ -81,8 +81,8 @@ export default {
     const userId = this.$store.getters["auth/getUserId"];
 
     setTimeout(async () => {
-      const boxes = await entitiesService.findAll("boxes", { userId });
-      this.boxes = boxes.data;
+      const fetchedLists = await entitiesService.findAll("boxes", { userId });
+      this.lists = fetchedLists.data;
       this.loading = false;
     }, 500);
   }
@@ -114,7 +114,7 @@ p {
   margin-bottom: 20px;
 }
 
-.box {
+.list {
   flex-grow: 1;
   font-size: 18px;
   .card.cardActive {

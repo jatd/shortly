@@ -7,7 +7,7 @@
       <section v-else :style="styleLoader">
         <Loader v-if="loading" />
         <section v-else>
-          <TodoList @createEvent="createEvent" :items="items" :boxName="box.name" />
+          <TodoList @createEvent="createEvent" :items="items" :listName="list.name" />
         </section>
       </section>
     </Card>
@@ -34,7 +34,7 @@ import Button from "./atomic/Button";
 export default {
   data() {
     return {
-      box: null,
+      list: null,
       items: [],
       loading: true,
       errored: false,
@@ -57,7 +57,7 @@ export default {
           title: this.todo,
           description: "test descript",
           date: null,
-          boxId: this.box.id
+          boxId: this.list.id
         });
         this.items = this.items.concat([data]);
         this.todo = "";
@@ -76,8 +76,8 @@ export default {
   async mounted() {
     try {
       const params = this.$store.state.route.params;
-      const { data } = await entitiesService.getOne("boxes", params.boxId);
-      this.box = data;
+      const { data } = await entitiesService.getOne("boxes", params.listId);
+      this.list = data;
       this.items = data.items;
       this.loading = false;
       this.$refs.todo.$el.focus();

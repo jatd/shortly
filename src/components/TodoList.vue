@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="title">{{boxName}}</div>
+    <div class="title">{{listName}}</div>
     <div class="form-container">
         <li v-for="(item) in items" :key="item.id">
           {{item.title}}
@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  props: ["items", "boxName"],
+  props: ["items", "listName"],
   data() {
     return {
       todo: null,
