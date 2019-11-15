@@ -6,7 +6,7 @@
         <Input type="password" name="password" placeholder="password" v-model="password" required />
       </form>
       <div :class="{ error: error }" v-html="error" />
-      <button @click="register">Register</button>
+      <Button @click="register">Register</Button>
     </Card>
   </div>
 </template>
@@ -14,6 +14,7 @@
 <script>
 import Card from "@/components/atomic/Card";
 import Input from "@/components/atomic/Input";
+import Button from "@/components/atomic/Button";
 
 export default {
   data() {
@@ -25,6 +26,7 @@ export default {
   },
 
   components: {
+    Button,
     Card,
     Input
   },

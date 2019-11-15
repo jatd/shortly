@@ -1,9 +1,9 @@
 <template>
-  <Card title="Create a TODO List" class="card">
-    <form name="create-box" onSubmit>
-      <Input :name="title" v-model="box.name" :required="true" />
+  <Card title="Name Your TODO List" class="card">
+    <form name="create-list" onSubmit>
+      <Input v-model="list.name" :required="true" />
     </form>
-    <Button @click="createBox">Create List</Button>
+    <Button @click="createList">Create List</Button>
   </Card>
 </template>
 
@@ -16,7 +16,7 @@ import Button from "@/components/atomic/Button";
 export default {
   data() {
     return {
-      box: {
+      list: {
         name: null
       },
       rules: {
@@ -26,14 +26,14 @@ export default {
   },
 
   methods: {
-    async createBox() {
+    async createList() {
       try {
         const userId = this.$store.getters["auth/getUserId"];
-        const box =
-          this.box.name &&
-          (await entitiesService.create("boxes", { ...this.box, userId }));
+        const list =
+          this.list.name &&
+          (await entitiesService.create("lists", { ...this.list, userId }));
 
-        return box && box.data && this.$emit("addBox", box.data);
+        return list && list.data && this.$emit("addList", list.data);
       } catch (err) {
         return err;
       }

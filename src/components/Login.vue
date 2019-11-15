@@ -11,8 +11,8 @@
           :required="true"
         />
       </form>
-      <div class="error" v-html="error" />
-      <button @click="login">Login</button>
+      <div class="error" v-html="error" v-show="error" />
+      <Button @click="login">Login</Button>
     </Card>
   </div>
 </template>
@@ -20,6 +20,7 @@
 <script>
 import Card from "@/components/atomic/Card";
 import Input from "@/components/atomic/Input";
+import Button from "@/components/atomic/Button";
 
 export default {
   data() {
@@ -47,7 +48,8 @@ export default {
 
   components: {
     Card,
-    Input
+    Input,
+    Button
   }
 };
 </script>
@@ -59,8 +61,13 @@ h1,
 h2 {
   font-weight: normal;
 }
+
 .error {
-  color: $error-color;
+  color: $color-dark;
+  font-size: 18px;
+  margin: 1rem;
+  border: 1px dashed;
+  padding: 5px;
 }
 
 .input-container:first-child {

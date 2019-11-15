@@ -1,13 +1,22 @@
 <template>
   <div class="card" v-bind:class="{ cardActive: hover }">
-    <div class="title" v-if="title">{{title}}</div>
+    <div class="title" v-if="title">{{ title }}</div>
     <slot></slot>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["title", "hover"]
+  props: {
+    title: {
+      type: String,
+      default: ""
+    },
+    hover: {
+      type: Boolean,
+      default: false
+    }
+  }
 };
 </script>
 

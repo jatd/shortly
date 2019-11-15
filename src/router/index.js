@@ -3,8 +3,8 @@ import Router from "vue-router";
 
 import Register from "@/components/Register";
 import Login from "@/components/Login";
-import Boxes from "@/components/Boxes";
-import Box from "@/components/Box";
+import Lists from "@/components/Lists";
+import ListItem from "@/components/ListItem";
 
 import store from "../store/store";
 
@@ -15,7 +15,7 @@ const router = new Router({
     {
       path: "/",
       name: "root",
-      component: Boxes,
+      component: Lists,
       meta: { requiresAuth: true }
     },
     {
@@ -29,16 +29,16 @@ const router = new Router({
       component: Login
     },
     {
-      path: "/boxes",
-      name: "boxes",
-      component: Boxes,
+      path: "/lists",
+      name: "lists",
+      component: Lists,
       meta: { requiresAuth: true }
     },
 
     {
-      path: "/box/:boxId",
-      name: "box",
-      component: Box
+      path: "/list/:listId",
+      name: "list",
+      component: ListItem
     }
   ]
 });

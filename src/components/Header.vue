@@ -4,7 +4,7 @@
     <section>
       <router-link to="/login" v-if="!isLoggedIn">Login</router-link>
       <router-link to="/register" v-if="!isLoggedIn">Register</router-link>
-      <router-link to="/" v-if="isLoggedIn">Boxes</router-link>
+      <router-link to="/" v-if="isLoggedIn">Lists</router-link>
       <a href="#" @click="logout" v-if="isLoggedIn">logout</a>
     </section>
   </header>
@@ -54,6 +54,10 @@ a {
   }
 }
 
+section {
+  margin-left: 10px;
+}
+
 a:not(first-child) {
   margin-right: 5px;
 }
@@ -61,5 +65,11 @@ a:not(first-child) {
 h2 {
   margin: 5px;
   color: $primary-color;
+}
+
+@media screen and (max-width: 320px) {
+  h2 {
+    font-size: 28px;
+  }
 }
 </style>
