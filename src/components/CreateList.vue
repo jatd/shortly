@@ -1,5 +1,5 @@
 <template>
-  <Card title="Create a TODO List" class="card">
+  <Card title="Name Your TODO List" class="card">
     <form name="create-list" onSubmit>
       <Input v-model="list.name" :required="true" />
     </form>
@@ -31,7 +31,7 @@ export default {
         const userId = this.$store.getters["auth/getUserId"];
         const list =
           this.list.name &&
-          (await entitiesService.create("boxes", { ...this.list, userId }));
+          (await entitiesService.create("lists", { ...this.list, userId }));
 
         return list && list.data && this.$emit("addList", list.data);
       } catch (err) {

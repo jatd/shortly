@@ -7,7 +7,8 @@
       <section v-else :style="styleLoader">
         <Loader v-if="loading" />
         <section v-else>
-          <TodoList @createEvent="createEvent" :items="items" :listName="list.name" />
+          <div class="title">{{list.name}}</div>
+          <Todos v-for="(item) in items" :key="item.id" :item="item" :listName="list.name" />
         </section>
       </section>
     </Card>
@@ -21,14 +22,14 @@
 
     <Button @click="createEvent">Create Event</Button>
   </div>
-</template>asdf
+</template>
 
 <script>
 import entitiesService from "@/services/entities";
 import Loader from "./atomic/Loader";
 import Card from "./atomic/Card";
 import Input from "./atomic/Input";
-import TodoList from "./TodoList";
+import Todos from "./Todos";
 import Button from "./atomic/Button";
 
 export default {
@@ -51,13 +52,11 @@ export default {
   },
 
   methods: {
-    async createEvent({ title, date }) {
+    async createEvent() {
       if (this.todo) {
         const { data } = await entitiesService.create("items", {
-          title: this.todo,
-          description: "test descript",
-          date: null,
-          boxId: this.list.id
+          description: this.todo,
+          listId: this.list.id
         });
         this.items = this.items.concat([data]);
         this.todo = "";
@@ -68,7 +67,7 @@ export default {
   components: {
     Card,
     Loader,
-    TodoList,
+    Todos,
     Input,
     Button
   },
@@ -76,7 +75,7 @@ export default {
   async mounted() {
     try {
       const params = this.$store.state.route.params;
-      const { data } = await entitiesService.getOne("boxes", params.listId);
+      const { data } = await entitiesService.getOne("lists", params.listId);
       this.list = data;
       this.items = data.items;
       this.loading = false;
@@ -104,6 +103,15 @@ export default {
   margin-bottom: 10px;
   width: 100%;
   position: sticky;
+}
+
+.title {
+  font-size: 28px;
+  color: $color-dark;
+  text-align: center;
+  margin-bottom: 20px;
+  font-style: italic;
+  opacity: 0.2;
 }
 
 section {

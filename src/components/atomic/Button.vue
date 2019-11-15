@@ -26,10 +26,10 @@ export default {
 button {
   font-weight: 600;
   outline: none;
-  background-color: #e0dada;
+  background-color: $primary-color;
   bottom: 0px;
   margin: 0px;
-  max-width: 600px;
+  max-width: $max-width;
   width: 100%;
   height: 60px;
   font-size: 26px;
@@ -43,7 +43,7 @@ button {
   border: 5px solid #ffffed;
 
   &:hover {
-    color: $primary-color;
+    color: white;
   }
 }
 </style>

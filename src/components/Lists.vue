@@ -81,7 +81,7 @@ export default {
     const userId = this.$store.getters["auth/getUserId"];
 
     setTimeout(async () => {
-      const fetchedLists = await entitiesService.findAll("boxes", { userId });
+      const fetchedLists = await entitiesService.findAll("lists", { userId });
       this.lists = fetchedLists.data;
       this.loading = false;
     }, 500);
