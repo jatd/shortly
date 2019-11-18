@@ -1,7 +1,7 @@
 <template>
-  <Card title="Name Your TODO List" class="card">
+  <Card title="Name Your List" class="card">
     <form name="create-list" onSubmit>
-      <Input v-model="list.name" :required="true" />
+      <Input ref="listNameInput" v-model="list.name" :required="true" :autofocus="true" />
     </form>
     <Button @click="createList">Create List</Button>
   </Card>
@@ -32,7 +32,7 @@ export default {
         const list =
           this.list.name &&
           (await entitiesService.create("lists", { ...this.list, userId }));
-
+        this.list.name = null;
         return list && list.data && this.$emit("addList", list.data);
       } catch (err) {
         return err;
@@ -44,6 +44,10 @@ export default {
     Card,
     Input,
     Button
+  },
+
+  mounted() {
+    this.$refs.listNameInput.$el.children[0].focus();
   }
 };
 </script>

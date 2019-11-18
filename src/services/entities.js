@@ -8,7 +8,16 @@ export default {
   findAll(entity, params) {
     return api().get(entity, { params });
   },
-  create(entity, box) {
-    return api().post(entity, box);
+
+  create(entity, payload) {
+    return api().post(entity, payload);
+  },
+
+  update(entity, id, payload) {
+    return api().put(`${entity}/${id}`, payload);
+  },
+
+  delete(entity, payload) {
+    return api().delete(entity, payload);
   }
 };

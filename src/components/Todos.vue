@@ -1,16 +1,39 @@
 <template>
   <div class="wrapper">
-    <div class="container">{{ item.description }}</div>
+    <div class="container" @click.prevent="setCompletedTodo">
+      <div class="todo" v-bind:class="{ isCompleted: item.isCompleted }">{{ item.description }}</div>
+      <font-awesome-icon :icon="trashIcon" class="icon" @click.prevent="deleteTodo" />
+    </div>
   </div>
 </template>
 
 <script>
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
+import debounce from "debounce";
+
 export default {
   props: ["item"],
+
   data() {
     return {
-      todo: null
+      trashIcon: faTrash,
+      listIcon: faCheck
     };
+  },
+
+  methods: {
+    setCompletedTodo: debounce(function() {
+      this.$emit("setCompletedTodo", this.item);
+    }, 200),
+
+    deleteTodo: debounce(function() {
+      this.$emit("deleteTodo", this.item.id);
+    }, 200)
+  },
+
+  components: {
+    FontAwesomeIcon
   }
 };
 </script>
@@ -20,15 +43,20 @@ export default {
 
 .wrapper {
   display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
+  padding: 10px 0px;
+  cursor: pointer;
 }
 
 .container {
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
 }
 
 .create-event-modal {
@@ -40,9 +68,23 @@ export default {
   padding-bottom: 15px;
 }
 
-li {
-  padding: 5px;
-  min-height: 40px;
+.todo {
   word-wrap: break-word;
+  width: 100%;
+}
+
+.isCompleted {
+  text-decoration: line-through;
+}
+
+.icon {
+  color: darken($color-grey, 10%);
+  cursor: pointer;
+  padding: 10px;
+
+  &:hover,
+  active {
+    color: $color-dark;
+  }
 }
 </style>
