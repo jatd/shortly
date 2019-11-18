@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper">
-    <div class="container" @click="setCompletedTodo">
+    <div class="container" @click.prevent="setCompletedTodo">
       <div class="todo" v-bind:class="{ isCompleted: item.isCompleted }">{{ item.description }}</div>
-      <font-awesome-icon :icon="trashIcon" class="icon" @click="deleteTodo" />
+      <font-awesome-icon :icon="trashIcon" class="icon" @click.prevent="deleteTodo" />
     </div>
   </div>
 </template>
@@ -10,6 +10,7 @@
 <script>
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faTrash, faCheck } from "@fortawesome/free-solid-svg-icons";
+import debounce from "debounce";
 
 export default {
   props: ["item"],
@@ -22,13 +23,13 @@ export default {
   },
 
   methods: {
-    setCompletedTodo() {
+    setCompletedTodo: debounce(function() {
       this.$emit("setCompletedTodo", this.item);
-    },
+    }, 200),
 
-    deleteTodo() {
+    deleteTodo: debounce(function() {
       this.$emit("deleteTodo", this.item.id);
-    }
+    }, 200)
   },
 
   components: {
@@ -47,12 +48,6 @@ export default {
   height: 100%;
   padding: 10px 0px;
   cursor: pointer;
-
-  &:hover {
-    background-color: #fafafa;
-    transition: ease background-color 0.3s;
-    border-radius: 5px;
-  }
 }
 
 .container {

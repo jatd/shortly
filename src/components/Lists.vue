@@ -7,7 +7,7 @@
       <Loader v-if="loading" />
       <section v-else class="wrapperSection">
         <Modal v-show="isModalOpen" @close="closeModal">
-          <CreateList @addList="addList" />
+          <CreateList @addList="addList" ref="createList" />
         </Modal>
         <section class="list" v-for="list in sortLists" :key="list.id">
           <a @click="viewList(list.id)">
@@ -17,7 +17,7 @@
           </a>
         </section>
       </section>
-      <Button @click="openModal" v-show="!loading">Add New Todo List</Button>
+      <Button @click="openModal" v-show="!loading">Add New List</Button>
     </section>
   </div>
 </template>
@@ -52,6 +52,7 @@ export default {
 
     openModal() {
       this.isModalOpen = true;
+      console.log(this.$refs.createList.$el.querySelector("input"));
     },
 
     addList(list) {

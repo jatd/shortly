@@ -7,7 +7,7 @@
       :value="value"
       :required="required"
       @input="handleInput"
-      :autofocus="autofocus"
+      :autofocus="true"
       :ref="refVar"
     />
   </div>
