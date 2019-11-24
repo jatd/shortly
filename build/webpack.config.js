@@ -4,19 +4,20 @@ const webpack = require("webpack");
 const path = require("path");
 
 function resolve(dir) {
+  console.log("test", path.join(__dirname, "..", dir));
   return path.join(__dirname, "..", dir);
 }
 
 module.exports = {
   context: path.resolve(__dirname, "../"),
   entry: {
-    main: "./src/main.js"
+    main: "./client/src/main.js"
   },
   resolve: {
     extensions: [".js", ".vue", ".json", ".scss"],
     alias: {
       vue$: "vue/dist/vue.esm.js",
-      "@": resolve("src")
+      "@": resolve("client/src")
     }
   },
   output: {
@@ -32,7 +33,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        loader: "babel-loader",
+        use: ["babel-loader", "eslint-loader"],
         exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file)
       },
       {
