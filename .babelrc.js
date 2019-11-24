@@ -1,13 +1,13 @@
 module.exports = {
   presets: [
     [
-      "@babel/preset-env",
+      '@babel/preset-env',
       {
-        useBuiltIns: "entry",
+        useBuiltIns: 'entry',
         targets: {
-          browsers: ["> 1%", "last 2 versions", "not ie <= 8", "ie >= 11"]
-        }
-      }
-    ]
-  ]
+          browsers: ['> 1%', 'last 2 versions', 'not ie <= 8', 'ie >= 11'],
+        },
+      },
+    ],
+  ],
 };
