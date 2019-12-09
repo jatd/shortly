@@ -4,7 +4,6 @@ const webpack = require("webpack");
 const path = require("path");
 
 function resolve(dir) {
-  console.log("test", path.join(__dirname, "..", dir));
   return path.join(__dirname, "..", dir);
 }
 

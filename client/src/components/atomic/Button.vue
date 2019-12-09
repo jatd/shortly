@@ -35,8 +35,8 @@ button {
   font-size: 26px;
   cursor: pointer;
   color: #43443d;
-  word-break: break-all;
-  white-space: pre-wrap;
+  // word-break: break-all;
+  // white-space: pre-wrap;
   font-family: Ubuntu;
   border-radius: 25px;
   outline: none !important;

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start-client": "webpack-dev-server --mode development --config build/webpack.config.js --exec  \"npm run lint-client\"",
-    "build": "webpack --mode production",
+    "build": "webpack --config build/webpack.config.js --mode production",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-server": "nodemon ./server/src/app.js --exec  \"npm run lint && node\"",
     "lint": "eslint ./server/src/**/*.js",
