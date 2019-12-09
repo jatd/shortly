@@ -20,6 +20,7 @@ module.exports = (req, res, next) => {
           error: 'Invalid information',
         });
     }
+    console.error(error);
   } else {
     next();
   }
